@@ -1,0 +1,410 @@
+date:- 17-09-2026
+Client–Server Model in SQL — Short Summary
+
+```text
+User → Client → Database Server → Database
+                    ↓
+User ← Client ← Database Server
+```
+
+* User: Person who requests data.
+* Client: Software like MySQL Workbench that sends SQL queries.
+* Database Server: Processes the SQL query and manages the database.
+* Database: Stores tables and actual data.
+* Result: Server sends the requested data back to the client, which shows it to the user.
+
+Example:
+User writes `SELECT * FROM students;` → Client sends it → DB Server processes it → Database provides data → Result shown to User.
+
+You can also explore
+
+* See a real web app example
+
+
+************* Clauses in my SEQUEL *******************
+1.Clauses are used for tasks such as filtering, storing, grouping, joining, manipulating and defining any database object.
+2. clauses are used :
+	1. control the flow of the data
+	2. Apply condition and sort the data and attribute
+	3. define the order of the records.
+	4.
+
+2. Types of Clauses :-
+	1. SELECT:- USED TO SELECT ATTRIBUTES FOR THE DISPLAY
+	2. FROM:- USED TO SELECT  TABLE FROM DATABASE
+	3. WHERE:- USSED TO FILETER VALUES OF THE ATTRIBUTES 
+	4. GROUP BY:- USED TO GROUP VALUE  ACCORDING TO THE ATTRIBUTES
+	5. ORDER BY:-  USED TO ORDER THE RECRDS
+		       ** ONLY CLAUSE WHICH CAN WORK WITH VIRTUAL VALUES AND REAL VALUES OF THE DATA. ******
+	6. HAVING:-  TO APPLY AGGREGATE FUNCTIONS ON ATTRIBUTES
+	7. JOIN:- USED TO JOIN MULTIPLE TABLE 
+	8. DISTINCT:- USED TO FILTER  OUT THE DISTINT RECORDS FROM THE DISPLAYED RESULT
+
+FROM 
+  | 
+WHERE	
+  |
+SELECT 
+******************** My SQL OPERATERS ***************************
+OPERATER:
+	1. SYMBOLS USED TO PERFORM SPECIFIC ACTIONS ON OPERAND
+        2. USES:-
+		A> UPDATE DATA 
+		B> COMPARE THE DATA 
+		C> FILTER THE DATA 
+		D> SORT THE DATA 
+		E> CHECK CONDITIONS
+		F> PERFORM THE COMPUATIONS 
+TYPES OF OPERATER:
+		A> ARTHIMETIC OPERATERS
+		B> RELA
+
+
+
+********** IMPORTANT FROM INTERVIEW PRESPECTIVE ***********
+SELECT 
+	EMPLOYEE_ID, 
+    FIRST_NAME,
+    LAST_NAME,
+    CASE 
+		WHEN EMPLOYEE_ID%2=0 THEN  "EVEN ID"
+        ELSE "ODD ID"
+	END AS IF_TYPE
+FROM HR.EMPLOYEES
+order by EMPLOYEE_ID
+LIMIT 10; 
+
+
+COMPARISON OPERATER:-
+SELECT 6=7; #0
+SELECT 6=6; #1
+SELECT 'A'='a'; #1
+SELECT 'ABC'='abc'; #1
+SELECT 1="1"; #1 IMP NOTE
+SELECT NULL= NULL; # NULL
+
+
+
+-- date 17-09-2026
+-- Clauses in sequel 
+
+--  Where clause 
+-- syntax:-
+-- select [columns] from <table_name> where <condition>
+
+ 
+ SELECT QTY , PRICE , PRICE* QTY  AS  TOATAL_PRICE FROM ORDERS;
+ 
+ SELECT * FROM HR.EMPLOYEES;
+ 
+ SELECT FIRST_NAME, LAST_NAME , EMAIL, SALARY , COMMISSION_PCT, SALARY+ SALARY*COMMISSION_PCT AS TOTAL_COMPENSATION FROM HR.EMPLOYEES;
+ 
+ SELECT FIRST_NAME , LAST_NAME , HIRE_DATE FROM HR.EMPLOYEES
+ WHERE  datediff(CURRENT_DATE, HIRE_DATE)>=5;
+ 
+ SELECT * FROM HR.EMPLOYEES
+ WHERE EMPLOYEE_ID%2=0;
+ 
+ SELECT * FROM HR.EMPLOYEES
+ WHERE EMPLOYEE_ID%2=1;
+ 
+ -- CASES IN SEQUEL 
+  
+SELECT 
+	EMPLOYEE_ID, 
+    FIRST_NAME,
+    LAST_NAME,
+    CASE 
+		WHEN EMPLOYEE_ID%2=0 THEN  "EVEN ID"
+        ELSE "ODD ID"
+	END AS IF_TYPE
+FROM HR.EMPLOYEES
+order by EMPLOYEE_ID
+LIMIT 10; 
+
+-- COMPARISON OPERATER
+SELECT 6=7;
+SELECT 6=6;
+SELECT 'A'='a';
+SELECT 'ABC'='abc';
+SELECT 1="1";
+SELECT NULL= NULL;
+
+SELECT * FROM HR.EMPLOYEES
+WHERE HIRE_DATE= '1987-06-18';
+
+-- NOT EQUAL TO OPERATERS
+
+SELECT 
+	EMPLOYEE_ID,
+    FIRST_NAME,
+    LAST_NAME,
+    SALARY 
+FROM 
+	HR.EMPLOYEES
+WHERE 
+	DEPARTMENT_ID !=90;
+    
+SELECT 
+	EMPLOYEE_ID,
+    FIRST_NAME,
+    LAST_NAME,
+    SALARY 
+FROM  
+	HR.EMPLOYEES
+WHERE 
+	DEPARTMENT_ID <> 90;
+    
+-- FIND THE EMPLOYEES WHO ARE NOT HIRED IN THE YEAR OF 1987
+
+
+SELECT * FROM HR.EMPLOYEES
+WHERE YEAR(HIRE_DATE)<>'1987';
+
+SELECT
+	FIRST_NAME ,
+    LAST_NAME,
+    EMPLOYEE_ID,
+    SALARY 
+FROM HR.EMPLOYEES
+WHERE HIRE_DATE>'1987-06-17';
+
+
+SELECT
+	FIRST_NAME ,
+    LAST_NAME,
+    EMPLOYEE_ID,
+    SALARY , 
+    TIMESTAMPDIFF(YEAR,HIRE_DATE, CURRENT_DATE) AS YEAR_OF_EXP
+FROM HR.EMPLOYEES
+
+-- date 17-09-2026
+-- Clauses in sequel 
+
+--  Where clause 
+-- syntax:-
+-- select [columns] from <table_name> where <condition>
+
+ 
+ SELECT QTY , PRICE , PRICE* QTY  AS  TOATAL_PRICE FROM ORDERS;
+ 
+ SELECT * FROM HR.EMPLOYEES;
+ 
+ SELECT FIRST_NAME, LAST_NAME , EMAIL, SALARY , COMMISSION_PCT, SALARY+ SALARY*COMMISSION_PCT AS TOTAL_COMPENSATION FROM HR.EMPLOYEES;
+ 
+ SELECT FIRST_NAME , LAST_NAME , HIRE_DATE FROM HR.EMPLOYEES
+ WHERE  datediff(CURRENT_DATE, HIRE_DATE)>=5;
+ 
+ SELECT * FROM HR.EMPLOYEES
+ WHERE EMPLOYEE_ID%2=0;
+ 
+ SELECT * FROM HR.EMPLOYEES
+ WHERE EMPLOYEE_ID%2=1;
+ 
+ -- CASES IN SEQUEL 
+  
+SELECT 
+	EMPLOYEE_ID, 
+    FIRST_NAME,
+    LAST_NAME,
+    CASE 
+		WHEN EMPLOYEE_ID%2=0 THEN  "EVEN ID"
+        ELSE "ODD ID"
+	END AS IF_TYPE
+FROM HR.EMPLOYEES
+order by EMPLOYEE_ID
+LIMIT 10; 
+
+-- COMPARISON OPERATER
+SELECT 6=7;
+SELECT 6=6;
+SELECT 'A'='a';
+SELECT 'ABC'='abc';
+SELECT 1="1";
+SELECT NULL= NULL;
+
+SELECT * FROM HR.EMPLOYEES
+WHERE HIRE_DATE= '1987-06-18';
+
+-- NOT EQUAL TO OPERATERS
+
+SELECT 
+	EMPLOYEE_ID,
+    FIRST_NAME,
+    LAST_NAME,
+    SALARY 
+FROM 
+	HR.EMPLOYEES
+WHERE 
+	DEPARTMENT_ID !=90;
+    
+SELECT 
+	EMPLOYEE_ID,
+    FIRST_NAME,
+    LAST_NAME,
+    SALARY 
+FROM  
+	HR.EMPLOYEES
+WHERE 
+	DEPARTMENT_ID <> 90;
+    
+-- FIND THE EMPLOYEES WHO ARE NOT HIRED IN THE YEAR OF 1987
+
+
+SELECT * FROM HR.EMPLOYEES
+WHERE YEAR(HIRE_DATE)<>'1987';
+
+SELECT
+	FIRST_NAME ,
+    LAST_NAME,
+    EMPLOYEE_ID,
+    SALARY 
+FROM HR.EMPLOYEES
+WHERE HIRE_DATE>'1987-06-17';
+
+
+
+
+SELECT 
+	FIRST_NAME,
+    LAST_NAME,
+    HIRE_DATE,
+    SALARY,
+    COMMISSION_PCT
+    FROM HR.EMPLOYEES
+WHERE COMMISSION_PCT >0.00 AND COMMISSION_PCT<0.15;
+
+-- BETWEEN OPERATER
+SELECT * FROM HR.EMPLOYEES
+WHERE HIRE_DATE BETWEEN '1989-09-18' AND '1989-09-18';
+
+SELECT * FROM HR.EMPLOYEES
+WHERE FIRST_NAME  BETWEEN 'A' AND 'C'; 
+
+SELECT * FROM HR.EMPLOYEES
+WHERE SALARY BETWEEN 5000 AND 10000;
+
+SELECT * FROM HR.EMPLOYEES
+WHERE DEPARTMENT_ID BETWEEN 50 AND 100;
+
+SELECT 
+	EMPLOYEE_ID,
+    FIRST_NAME,
+    LAST_NAME,
+    DEPARTMENT_ID,
+    JOB_ID
+FROM HR.EMPLOYEES
+WHERE DEPARTMENT_ID IN (50,60,70,80,90);
+
+SELECT 
+	EMPLOYEE_ID,
+    FIRST_NAME,
+    LAST_NAME,
+    JOB_ID,
+    SALARY 
+FROM HR.EMPLOYEES
+WHERE JOB_ID IN ('IT_DESC',"SA_REP","ST_CLERK");
+
+SELECT 
+	EMPLOYEE_ID,
+    FIRST_NAME, 
+    LAST_NAME,
+    DEPARTMENT_ID,
+    JOB_ID
+FROM HR.EMPLOYEES
+WHERE DEPARTMENT_ID NOT IN (100,50,60,70)
+AND DEPARTMENT_ID IS NOT NULL;
+
+
+-- FIND THE EMPLOYEES WITH OUT COMMISSION PACK
+
+SELECT 
+	FIRST_NAME,
+    LAST_NAME, 
+    SALARY,
+    COMMISSION_PCT
+FROM  HR.EMPLOYEES
+WHERE COMMISSION_PCT IS NULL;
+
+DESC HR.DEPARTMENTS;
+-- FIMD THE DEPARTMENT WITHOUT MANAGER
+SELECT * FROM HR.DEPARTMENTS
+WHERE MANAGER_ID  IS NOT NULL OR MANAGER_ID IS NULL ;
+
+    
+-- IMP FUNCTIONS 
+SELECT * , 
+	IFNULL(SHIP_REGION,'NONE') AS UP_REGION
+    FROM NORTHWIND.ORDERS;
+    
+SELECT SHIP_REGION, 
+	NULLIF(SHIP_REGION,'RJ') AS UP_REGION
+    FROM NORTHWIND.ORDERS;
+    
+SELECT SHIP_REGION ,
+	COALESCE(SHIP_REGION ,'NONE') AS UP_REGION 
+FROM northwind.ORDERS;
+
+select 
+	employee_id ,
+    first_name,
+    last_name,
+    job_id
+from hr.employees
+where first_name like 's%';
+
+select 
+	employee_id,
+    first_name,
+    last_name,
+    job_id
+from hr.employees
+where last_name like '%an';
+
+select * from hr.employees
+where phone_number like '515%';
+
+select 
+	employee_id,
+    first_name,
+    last_name,
+    job_id
+from hr.employees
+where last_name like '%son';
+
+-- find the  employees whose names start with vowel
+ 
+ select first_name, 
+		last_name from hr.employees
+where first_name like '%A' or 
+	  first_name like '%e' or
+      first_name like '%i' or
+      first_name like '%o' or
+      first_name like '%u';
+      
+select first_name , last_name , salary , job_id from hr.employees
+where first_name like '____';
+
+select * from hr.jobs;
+
+select 
+	employee_id,
+    first_name ,
+    last_name,
+    phone_number
+from hr.employees
+where phone_number like '515.100:___';
+
+select first_name  from hr.employees where first_name  regexp '[a-d]' ;
+select first_name from hr.employees where first_name regexp '(en|a)$';
+select first_name from hr.employees where first_name regexp '^a';
+select first_name from hr.employees where first_name regexp 'a$';
+select first_name from hr.employees where first_name regexp 'ee';
+
+select first_name from hr.employees 
+where first_name regexp '^a| ^e| ^i |^o| ^u';
+
+select first_name from hr.employees
+where first_name regexp '^[aeiou]';
+
+select first_name from hr.employees where first_name regexp '{4}';
